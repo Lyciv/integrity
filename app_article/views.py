@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from app_article.models import Article
 import json
 
-from utils.auth import token_auth
+from utils.auth import token_auth, token_student
 
 
 # 查询/新增
