@@ -45,7 +45,7 @@ def login(request):
                 if user.id and user.password == md5(password):
                     if user.authority == authority:
                         token = generate_token({
-                            "uid": user.id,
+                            "uid": str(user.id),
                             "username": user.username,
                             "authority": user.authority
                         }, expire=1)
