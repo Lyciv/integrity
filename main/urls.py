@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('app_user.urls', namespace='user')),
     path('article/', include('app_article.urls',namespace='article')),
-    path('student/',include('app_student.urls',namespace='student'))
+    path('student/',include('app_student.urls',namespace='student')),
+    path('photo/',include('app_photo.urls',namespace='photo')),
 ]
 # 允许所有的media文件被访问
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
