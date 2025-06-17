@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from app_student.models import Student
 from main import settings
+from main.settings import MEDIA_URL
 from utils.auth import token_student
 from utils.token import student_token
 
@@ -18,7 +19,7 @@ def student_info(request):
         try:
             user_id=student_token(request.META.get("HTTP_X_TOKEN", b''))['result']['data']['uid']
             student=Student.objects.get(user_id=user_id)
-            student.url=os.path.join(settings.MEDIA_ROOT, 'uploads',student.url)
+            student.url=os.path.join(MEDIA_URL, 'uploads',student.url)
             if student:
                 return JsonResponse({"code": "200", "msg": "成功", "data": {"student": student.toDict()}})
             else:
@@ -76,7 +77,7 @@ def upload(request):
             return JsonResponse({
                 "code": 200,
                 "message": "OK",
-                "data": file_path  # 或返回数据库路径等
+                "data": upload_path.join(new_file_name)  # 或返回数据库路径等
             })
         except Exception as e:
             return JsonResponse({"code": 500, "message": "上传失败",'data':e})
