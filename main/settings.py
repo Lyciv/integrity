@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'app_article',
     'app_student.apps.AppStudentConfig',
     'app_photo.apps.AppPhotoConfig',
-    'app_column.apps.AppColumnConfig'
+    'app_column.apps.AppColumnConfig',
+    'app_question.apps.AppQuestionConfig'
 ]
 
 MIDDLEWARE = [
