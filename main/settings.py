@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+from corsheaders.defaults import default_methods
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,8 @@ SECRET_KEY = 'django-insecure-$(=xjs#8xe9$^(se#qsgy=e!o(2n2v_a$+ag!duh_lbvtjzir!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["lvrong.mynatapp.cc", "localhost", "127.0.0.1"]
+
 
 # Application definition
 # 注册你的应用 可以用命令 django-admin startapp app_name 进行注册
@@ -36,15 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'app_user',
     'app_article',
     'app_student.apps.AppStudentConfig',
     'app_photo.apps.AppPhotoConfig',
     'app_column.apps.AppColumnConfig',
-    'app_question.apps.AppQuestionConfig'
+    'app_question.apps.AppQuestionConfig',
+    'app_exam.apps.AppExamConfig'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +144,23 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS  = [
+    '*',
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "x-token",
+]
+
+CORS_ALLOW_CREDENTIALS = True

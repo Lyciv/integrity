@@ -26,6 +26,7 @@ urlpatterns = [
     path('photo/',include('app_photo.urls',namespace='photo')),
     path('column/',include('app_column.urls',namespace='column')),
     path('question/',include('app_question.urls',namespace='question')),
+    path('exam/',include('app_exam.urls',namespace='exam')),
 ]
 # 允许所有的media文件被访问
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

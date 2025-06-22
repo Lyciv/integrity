@@ -22,3 +22,14 @@ class Question(models.Model):
             'd': self.d,
             'answer': self.answer
         }
+
+    def toDict2(self):
+        return {
+            'id': self.id,
+            'column_id': self.column_id,
+            'question_text': self.question_text,
+            'a': self.a,
+            'b': self.b,
+            'c': self.c,
+            'd': self.d,
+        }

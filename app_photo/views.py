@@ -12,7 +12,7 @@ from utils.auth import token_auth
 # Create your views here.
 
 @csrf_exempt
-@token_auth
+# @token_auth
 def upload(request):
     if request.method == "POST":
         try:

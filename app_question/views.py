@@ -11,7 +11,7 @@ from utils.auth import token_teacher
 
 # Create your views here.
 @csrf_exempt
-@token_teacher
+# @token_teacher
 def add_question(request):
     if request.method == "POST":
         req = json.loads(request.body)
@@ -32,7 +32,7 @@ def add_question(request):
             return JsonResponse({"code": "500", "msg": "添加失败。", "data": str(e)})
 
 @csrf_exempt
-@token_teacher
+# @token_teacher
 def update_question(request):
     if request.method == "POST":
         req = json.loads(request.body)
@@ -52,7 +52,7 @@ def update_question(request):
             return JsonResponse({"code": "500", "msg": "修改失败。", "data": str(e)})
 
 @csrf_exempt
-@token_teacher
+# @token_teacher
 def show_single_question(request):
     if request.method == "POST":
         req = json.loads(request.body)
@@ -63,12 +63,23 @@ def show_single_question(request):
             return JsonResponse({"code": "500", "msg": "查询失败。", "data": str(e)})
 
 @csrf_exempt
-@token_teacher
+# @token_teacher
 def show_question_list(request):
     if request.method == "POST":
         req = json.loads(request.body)
         try:
             question_list=Question.objects.filter(column_id=req['column_id'])
+            return JsonResponse({"code": "200", "msg": "查询成功。",'data':[question.toDict() for question in question_list]})
+        except Exception as e:
+            return JsonResponse({"code": "500", "msg": "查询失败。", "data": str(e)})
+
+
+@csrf_exempt
+# @token_teacher
+def show_all(request):
+    if request.method == "GET":
+        try:
+            question_list=Question.objects.all()
             return JsonResponse({"code": "200", "msg": "查询成功。",'data':[question.toDict() for question in question_list]})
         except Exception as e:
             return JsonResponse({"code": "500", "msg": "查询失败。", "data": str(e)})
